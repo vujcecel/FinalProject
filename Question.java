@@ -8,7 +8,7 @@ class Question {
     return prompt;
   }
 
-  String getChoices() {
+  String[] getChoices() {
     return choices;
   }
 

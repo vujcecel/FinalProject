@@ -1,14 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
-class Game implements ActionListener {
+class Game {
   JFrame frame;
   JLabel welcomeLabel, questionLabel, scoreLabel;
-  JButtons answers[];
+  JButton answers[] = new JButton[4];
   JButton nextButton;
-  Question questions[];
+  ArrayList<Question> questions = new ArrayList<Question>();
 
   Game() {
     importQuestions();
@@ -21,6 +22,26 @@ class Game implements ActionListener {
   }
 
   void importQuestions() {
-    
+    try {
+      FileReader fileReader = new FileReader("trivia.txt");
+      BufferedReader bufferedReader = new BufferedReader(fileReader);
+      String question;
+      String choices[] = new String[4];
+      int correctIdx;
+      int points;
+      while (bufferedReader.ready()) {
+        question = bufferedReader.readLine();
+        for (int i = 0; bufferedReader.ready() && i < choices.length; i++) {
+          choices[i] = bufferedReader.readLine();
+        }
+        correctIdx = Integer.parseInt(bufferedReader.readLine());
+        points = Integer.parseInt(bufferedReader.readLine());
+        questions.add(new Question(question, choices, correctIdx, points));
+      }
+      bufferedReader.close();
+    }
+    catch(IOException e) {
+      System.out.println(e.toString());
+    }
   }
 }
