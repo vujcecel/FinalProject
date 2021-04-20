@@ -117,14 +117,12 @@ class Game implements ActionListener {
     catch(IOException e) {
       System.out.println(e.toString());
     }
-    //frame.remove(welcomeLabel);
-    //frame.remove(questionLabel);
-    //for (int i = 0; i < answers.size(); i++)
-      //frame.remove(answers.get(i));
     frame.remove(PanelQuestion);
     frame.remove(PanelAnswer);
     nextButton.setText("End");
     scoreLabel.setText("Final Score: " + score);
+    frame.remove(PanelScore);
+    frame.add(PanelScore, BorderLayout.CENTER);
     frame.setSize(150, 100);
     frame.repaint();
   }
