@@ -56,7 +56,8 @@ class Game implements ActionListener {
     frame.setVisible(true);
   }
 
-  // Go to next question, reset UI state, update score
+  /* Go to next question, reset UI state, update score for the {@link Game}
+  */
   private void next() {
     currentIdx++;
     if (currentIdx == questions.size() - 1) {
@@ -93,7 +94,8 @@ class Game implements ActionListener {
     }
   }
 
-  // Saves score and displays end screen
+  /** Saves score and displays end screen to the {@link Game}
+  */
   private void scoreGame() {
     try {
       FileWriter fileWriter = new FileWriter("scores.txt", true);
@@ -145,7 +147,8 @@ class Game implements ActionListener {
     }
   }
 
-  // Grade answer and change button color
+  /* Grade answer and change button color to the {@link Game}
+  */
   private void grade(int choice) {
     if (questions.get(currentIdx).getCorrectIdx() == choice) {
       score += questions.get(currentIdx).getPoints();
