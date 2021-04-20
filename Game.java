@@ -10,6 +10,7 @@ class Game implements ActionListener {
   private JLabel welcomeLabel, questionLabel, scoreLabel;
   private ArrayList<JButton> answers = new ArrayList<JButton>();
   private JButton nextButton;
+  private JPanel PanelAnswer, PanelQuestion, PanelScore;
 
   private ArrayList<Question> questions = new ArrayList<Question>();
   private int score = 0;
@@ -24,9 +25,9 @@ class Game implements ActionListener {
     frame.setSize(800, 150);
 
     //Set up panels for UI design
-    JPanel PanelQuestion = new JPanel();
-    JPanel PanelAnswer = new JPanel();
-    JPanel PanelScore = new JPanel();
+    PanelQuestion = new JPanel();
+    PanelAnswer = new JPanel();
+    PanelScore = new JPanel();
 
     // Set up code to welcome player and prompt questions as well as set score to 0
     welcomeLabel = new JLabel("Welcome player!");
@@ -116,10 +117,12 @@ class Game implements ActionListener {
     catch(IOException e) {
       System.out.println(e.toString());
     }
-    frame.remove(welcomeLabel);
-    frame.remove(questionLabel);
-    for (int i = 0; i < answers.size(); i++)
-      frame.remove(answers.get(i));
+    //frame.remove(welcomeLabel);
+    //frame.remove(questionLabel);
+    //for (int i = 0; i < answers.size(); i++)
+      //frame.remove(answers.get(i));
+    frame.remove(PanelQuestion);
+    frame.remove(PanelAnswer);
     nextButton.setText("End");
     scoreLabel.setText("Final Score: " + score);
     frame.setSize(150, 100);
