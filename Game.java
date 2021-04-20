@@ -20,8 +20,13 @@ class Game implements ActionListener {
 
     // Create header and determine frame size and layout
     frame = new JFrame("Group #4's Trivia Game");
-    frame.setLayout(new FlowLayout());
-    frame.setSize(750, 120);
+    frame.setLayout(new BorderLayout());
+    frame.setSize(800, 150);
+
+    //Set up panels for UI design
+    JPanel PanelQuestion = new JPanel();
+    JPanel PanelAnswer = new JPanel();
+    JPanel PanelScore = new JPanel();
 
     // Set up code to welcome player and prompt questions as well as set score to 0
     welcomeLabel = new JLabel("Welcome player!");
@@ -46,13 +51,16 @@ class Game implements ActionListener {
     nextButton.addActionListener(this);
 
     // Add labels for welcome, questions score and next button
-    frame.add(welcomeLabel);
-    frame.add(questionLabel);
+    PanelQuestion.add(welcomeLabel);
+    PanelQuestion.add(questionLabel);
     for (int i = 0; i < answers.size(); i++)
-      frame.add(answers.get(i));
-    frame.add(scoreLabel);
-    frame.add(nextButton);
-
+      PanelAnswer.add(answers.get(i));
+    PanelScore.add(scoreLabel);
+    PanelScore.add(nextButton);
+    frame.add(PanelQuestion, BorderLayout.PAGE_START);
+    frame.add(PanelAnswer, BorderLayout.CENTER);
+    frame.add(PanelScore, BorderLayout.PAGE_END);
+    
     frame.setVisible(true);
   }
 
