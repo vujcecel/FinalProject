@@ -10,6 +10,7 @@ class Game implements ActionListener {
   private JLabel welcomeLabel, questionLabel, scoreLabel;
   private ArrayList<JButton> answers = new ArrayList<JButton>();
   private JButton nextButton;
+  private JPanel PanelAnswer, PanelQuestion, PanelScore;
 
   private ArrayList<Question> questions = new ArrayList<Question>();
   private int score = 0;
@@ -20,8 +21,13 @@ class Game implements ActionListener {
 
     // Create header and determine frame size and layout
     frame = new JFrame("Group #4's Trivia Game");
-    frame.setLayout(new FlowLayout());
-    frame.setSize(750, 120);
+    frame.setLayout(new BorderLayout());
+    frame.setSize(800, 150);
+
+    //Set up panels for UI design
+    PanelQuestion = new JPanel();
+    PanelAnswer = new JPanel();
+    PanelScore = new JPanel();
 
     // Set up code to welcome player and prompt questions as well as set score to 0
     welcomeLabel = new JLabel("Welcome player!");
@@ -45,14 +51,20 @@ class Game implements ActionListener {
     answers.get(3).addActionListener(this);
     nextButton.addActionListener(this);
 
-    // Add labels for welcome, questions score and next button
-    frame.add(welcomeLabel);
-    frame.add(questionLabel);
+    // Add labels, panels, and buttons. Also set color for label and set frame to visible
+    PanelQuestion.add(welcomeLabel);
+    PanelQuestion.add(questionLabel);
+    scoreLabel.setOpaque(true);
+    scoreLabel.setBackground(new Color(0xFFD700));
     for (int i = 0; i < answers.size(); i++)
-      frame.add(answers.get(i));
-    frame.add(scoreLabel);
-    frame.add(nextButton);
-
+      PanelAnswer.add(answers.get(i));
+    PanelScore.add(scoreLabel);
+    nextButton.setBackground(new Color(0xC0C0C0));
+    PanelScore.add(nextButton);
+    frame.add(PanelQuestion, BorderLayout.PAGE_START);
+    frame.add(PanelAnswer, BorderLayout.CENTER);
+    frame.add(PanelScore, BorderLayout.PAGE_END);
+    
     frame.setVisible(true);
   }
 
@@ -108,12 +120,13 @@ class Game implements ActionListener {
     catch(IOException e) {
       System.out.println(e.toString());
     }
-    frame.remove(welcomeLabel);
-    frame.remove(questionLabel);
-    for (int i = 0; i < answers.size(); i++)
-      frame.remove(answers.get(i));
+    frame.remove(PanelQuestion);
+    frame.remove(PanelAnswer);
     nextButton.setText("End");
     scoreLabel.setText("Final Score: " + score);
+    scoreLabel.setOpaque(false);
+    frame.remove(PanelScore);
+    frame.add(PanelScore, BorderLayout.CENTER);
     frame.setSize(150, 100);
     frame.repaint();
   }
