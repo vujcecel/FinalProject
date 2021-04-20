@@ -54,11 +54,12 @@ class Game implements ActionListener {
     // Add labels, panels, and buttons. Also set color for label and set frame to visible
     PanelQuestion.add(welcomeLabel);
     PanelQuestion.add(questionLabel);
-    questionLabel.setOpaque(true);
-    questionLabel.setBackground(new Color(0x800080));
+    scoreLabel.setOpaque(true);
+    scoreLabel.setBackground(new Color(0xFFD700));
     for (int i = 0; i < answers.size(); i++)
       PanelAnswer.add(answers.get(i));
     PanelScore.add(scoreLabel);
+    nextButton.setBackground(new Color(0xC0C0C0));
     PanelScore.add(nextButton);
     frame.add(PanelQuestion, BorderLayout.PAGE_START);
     frame.add(PanelAnswer, BorderLayout.CENTER);
@@ -123,6 +124,7 @@ class Game implements ActionListener {
     frame.remove(PanelAnswer);
     nextButton.setText("End");
     scoreLabel.setText("Final Score: " + score);
+    scoreLabel.setOpaque(false);
     frame.remove(PanelScore);
     frame.add(PanelScore, BorderLayout.CENTER);
     frame.setSize(150, 100);
