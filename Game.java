@@ -51,9 +51,11 @@ class Game implements ActionListener {
     answers.get(3).addActionListener(this);
     nextButton.addActionListener(this);
 
-    // Add labels for welcome, questions score and next button
+    // Add labels, panels, and buttons. Also set color for label and set frame to visible
     PanelQuestion.add(welcomeLabel);
     PanelQuestion.add(questionLabel);
+    questionLabel.setOpaque(true);
+    questionLabel.setBackground(new Color(0x800080));
     for (int i = 0; i < answers.size(); i++)
       PanelAnswer.add(answers.get(i));
     PanelScore.add(scoreLabel);
