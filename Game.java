@@ -3,7 +3,8 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
-//Create Game class and implement ActionListener. Also setting up GUI
+
+// Game class handles UI and internal game logic
 class Game implements ActionListener {
   private JFrame frame;
   private JLabel welcomeLabel, questionLabel, scoreLabel;
@@ -13,14 +14,16 @@ class Game implements ActionListener {
   private ArrayList<Question> questions = new ArrayList<Question>();
   private int score = 0;
   private int currentIdx = 0;
-//Import questions code
+  // Import questions code
   Game() {
     importQuestions();
-//Create header and determine frame size and layout
+
+    // Create header and determine frame size and layout
     frame = new JFrame("Group #4's Trivia Game");
     frame.setLayout(new FlowLayout());
     frame.setSize(750, 120);
-//Set up code to welcome player and prompt questions as well as set score to 0
+
+    // Set up code to welcome player and prompt questions as well as set score to 0
     welcomeLabel = new JLabel("Welcome player!");
     Question question = questions.get(0);
     questionLabel = new JLabel(question.getPrompt());
@@ -28,19 +31,21 @@ class Game implements ActionListener {
       answers.add(new JButton(question.getChoices()[i]));
     scoreLabel = new JLabel("Score: " + 0);
     nextButton = new JButton("Next");
-//Create functionality to answer buttons
+
+    // Create functionality to answer buttons
     answers.get(0).setActionCommand("A");
     answers.get(1).setActionCommand("B");
     answers.get(2).setActionCommand("C");
     answers.get(3).setActionCommand("D");
     
-//Add action listener to each button    
+    // Add action listener to each button    
     answers.get(0).addActionListener(this);
     answers.get(1).addActionListener(this);
     answers.get(2).addActionListener(this);
     answers.get(3).addActionListener(this);
     nextButton.addActionListener(this);
-//Add labels for welcome, questions score and next button
+
+    // Add labels for welcome, questions score and next button
     frame.add(welcomeLabel);
     frame.add(questionLabel);
     for (int i = 0; i < answers.size(); i++)
@@ -51,6 +56,7 @@ class Game implements ActionListener {
     frame.setVisible(true);
   }
 
+  // Go to next question, reset UI state, update score
   private void next() {
     currentIdx++;
     if (currentIdx == questions.size() - 1) {
@@ -64,7 +70,8 @@ class Game implements ActionListener {
     }
     scoreLabel.setText("Score: " + score);
   }
-//Set up file reader to get texts from trivia.txt file
+
+  // Set up file reader to get texts from trivia.txt file
   private void importQuestions() {
     try {
       FileReader fileReader = new FileReader("trivia.txt");
@@ -81,12 +88,12 @@ class Game implements ActionListener {
       }
       bufferedReader.close();
     }
-//Create catch block 
     catch(IOException e) {
       System.out.println(e.toString());
     }
   }
-//Create method for scoreGame
+
+  // Saves score and displays end screen
   private void scoreGame() {
     try {
       FileWriter fileWriter = new FileWriter("scores.txt", true);
@@ -108,7 +115,8 @@ class Game implements ActionListener {
     frame.setSize(150, 100);
     frame.repaint();
   }
-//Create actionPerformed method to notify actionListener
+
+  // Method for handling button presses
   public void actionPerformed(ActionEvent ae) {
     switch (ae.getActionCommand()) {
       case "Next":
@@ -136,7 +144,8 @@ class Game implements ActionListener {
         System.out.printf("Error: unhandled action command '%s'%n", ae.getActionCommand());
     }
   }
-//Create method for grade
+
+  // Grade answer and change button color
   private void grade(int choice) {
     if (questions.get(currentIdx).getCorrectIdx() == choice) {
       score += questions.get(currentIdx).getPoints();
