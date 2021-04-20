@@ -9,7 +9,7 @@ class Game implements ActionListener {
   private JFrame frame;
   private JLabel welcomeLabel, questionLabel, scoreLabel;
   private ArrayList<JButton> answers = new ArrayList<JButton>();
-  private JButton nextButton;
+  private JButton nextButton, nameButton;
   private JPanel PanelAnswer, PanelQuestion, PanelScore;
 
   private ArrayList<Question> questions = new ArrayList<Question>();
