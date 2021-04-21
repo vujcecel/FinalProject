@@ -4,7 +4,13 @@ import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-// Game class handles UI and internal game logic
+/**
+* Game class handles UI and internal game logic
+* @author Evan Vujcec
+* @author Zachary Preszler
+* @version 20-04-2021
+*/
+
 class Game implements ActionListener {
   private JFrame frame;
   private JLabel welcomeLabel, questionLabel, scoreLabel;
@@ -15,7 +21,11 @@ class Game implements ActionListener {
   private ArrayList<Question> questions = new ArrayList<Question>();
   private int score = 0;
   private int currentIdx = 0;
-  // Import questions code
+
+  /**
+  * Game class constructor
+  * Setups up intitial UI state
+  */
   Game() {
     importQuestions();
 
@@ -68,7 +78,8 @@ class Game implements ActionListener {
     frame.setVisible(true);
   }
 
-  /* Go to next question, reset UI state, update score for the {@link Game}
+  /**
+  * Go to next question, reset UI state, update score
   */
   private void next() {
     currentIdx++;
@@ -84,7 +95,9 @@ class Game implements ActionListener {
     scoreLabel.setText("Score: " + score);
   }
 
-  // Set up file reader to get texts from trivia.txt file
+  /**
+  * Set up file reader to get texts from trivia.txt file
+  */
   private void importQuestions() {
     try {
       FileReader fileReader = new FileReader("trivia.txt");
@@ -106,7 +119,8 @@ class Game implements ActionListener {
     }
   }
 
-  /** Saves score and displays end screen to the {@link Game}
+  /**
+  * Saves score and displays end screen
   */
   private void scoreGame() {
     try {
@@ -131,7 +145,6 @@ class Game implements ActionListener {
     frame.repaint();
   }
 
-  // Method for handling button presses
   public void actionPerformed(ActionEvent ae) {
     switch (ae.getActionCommand()) {
       case "Next":
@@ -160,7 +173,9 @@ class Game implements ActionListener {
     }
   }
 
-  /* Grade answer and change button color to the {@link Game}
+  /**
+  * Grade answer and change button color
+  * @param choice An int that refers to the index of the answer chosen by the user
   */
   private void grade(int choice) {
     if (questions.get(currentIdx).getCorrectIdx() == choice) {

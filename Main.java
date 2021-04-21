@@ -1,12 +1,17 @@
 /*
 Final Project
-Group #_: Zack Preszler, Evan Vujec, Jake Hartman, Zac Howe
+Group #4: Zack Preszler, Evan Vujec, Jake Hartman, Zac Howe
 Date: (4/20/2021)
 */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-// Runs the game
+
+/**
+* Main class handles execution of SwingUI created by {@link Game}
+* @author Evan Vujcec
+* @version 16-04-2021
+*/
 class Main {
   public static void main(String args[]) {
     SwingUtilities.invokeLater(
