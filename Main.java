@@ -1,7 +1,7 @@
 /*
 Final Project
-Group #4: Zack Preszler, Evan Vujec, Jake Hartman, Zac Howe
-Date: (4/20/2021)
+Group #4: Zack Preszler, Evan Vujcec, Jake Hartman, Zac Howe
+Date: 4-20-2021
 */
 import java.awt.*;
 import java.awt.event.*;
